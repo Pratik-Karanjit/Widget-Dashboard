@@ -7,7 +7,6 @@ const MetricWidget = React.lazy(() => import('./widgets/MetricWidget'));
 const TableWidget = React.lazy(() => import('./widgets/TableWidget'));
 const ChartWidget = React.lazy(() => import('./widgets/ChartWidget'));
 
-// A mapping object for easy lookup of lazy-loaded components
 const widgetComponents = {
     text: TextWidget,
     metric: MetricWidget,

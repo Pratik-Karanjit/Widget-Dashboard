@@ -3,7 +3,6 @@ import { X } from 'lucide-react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 
-// Register ChartJS components
 ChartJS.register(
     CategoryScale,
     LinearScale,
