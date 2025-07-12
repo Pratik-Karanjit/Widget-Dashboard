@@ -48,22 +48,6 @@ localStorage for persistence
 
 ---
 
-## Component Structure
-
-src/
-├── components/
-│ ├── Dashboard.jsx
-│ ├── WidgetRenderer.jsx
-│ └── widgets/
-│ ├── ChartWidget.jsx
-│ ├── MetricWidget.jsx
-│ ├── TextWidget.jsx
-│ └── TableWidget.jsx
-├── context/
-│ └── WidgetContext.jsx
-├── config.js
-└── App.jsx
-
 ### Modularization
 
 Each widget type is fully self-contained and lazy-loaded. `WidgetRenderer` dynamically renders components based on their `type`, allowing new widgets to be added with minimal changes.
@@ -75,16 +59,6 @@ Each widget type is fully self-contained and lazy-loaded. `WidgetRenderer` dynam
 - Global state is handled using **React Context + useReducer**
 - Actions supported: `ADD`, `REMOVE`, `REORDER`, `INIT`
 - State is persisted to **localStorage** with `useEffect`
-
----
-
-## Data Flow
-
-[config.js] --> WidgetContext (INIT) --> Dashboard
-↑
-[User Interactions] --> dispatch(ADD, REMOVE, REORDER)
-↓
-React re-renders optimized via keys + memo
 
 ---
 
