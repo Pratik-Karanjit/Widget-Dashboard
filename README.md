@@ -11,7 +11,8 @@ Users can **add**, **remove**, and **reorder** various widgets like charts, metr
 # 1. Clone the repository
 
 git clone https://github.com/Pratik-Karanjit/Widget-Dashboard.git
-cd widget-dashboard
+
+cd Widget-Dashboard
 
 # 2. Install dependencies
 
