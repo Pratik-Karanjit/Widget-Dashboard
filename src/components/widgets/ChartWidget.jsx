@@ -1,20 +1,74 @@
-import { X } from 'lucide-react';
 import React from 'react';
-import { CgCross } from 'react-icons/cg';
-import { FaCross } from 'react-icons/fa';
-import { FiBarChart2 } from 'react-icons/fi';
-import { ImCross } from 'react-icons/im';
+import { X } from 'lucide-react';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
+import { Bar, Line } from 'react-chartjs-2';
 
-const ChartWidget = ({ chartType, dataSource, onRemove }) => {
-    const chartColors = {
-        bar: 'bg-blue-100 border-blue-200',
-        line: 'bg-green-100 border-green-200',
-        pie: 'bg-purple-100 border-purple-200',
-        default: 'bg-gray-100 border-gray-200'
+// Register ChartJS components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+const ChartWidget = ({ chartType = 'bar', title = 'Chart', onRemove }) => {
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Data 1',
+                data: [65, 59, 80, 81, 56, 55],
+                backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                borderColor: 'rgba(79, 70, 229, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Data 2',
+                data: [28, 48, 40, 19, 86, 27],
+                backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                borderColor: 'rgba(16, 185, 129, 1)',
+                borderWidth: 1,
+            }
+        ],
+    };
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: title,
+                padding: {
+                    bottom: 10
+                }
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    drawBorder: false
+                }
+            },
+            x: {
+                grid: {
+                    display: false
+                }
+            }
+        }
     };
 
     return (
-        <div className={`p-5 rounded-xl border ${chartColors[chartType] || chartColors.default} shadow-sm hover:shadow-md transition-shadow duration-200 relative group`}
+        <div className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 relative group"
             style={{ height: '250px' }}>
             <button
                 onClick={onRemove}
@@ -24,24 +78,13 @@ const ChartWidget = ({ chartType, dataSource, onRemove }) => {
                 <X className="h-4 w-4" />
             </button>
 
-            <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-gray-800 capitalize">{chartType} Chart</h2>
-                <span className="text-xs px-2 py-1 mx-2 rounded-full bg-white text-gray-600 border border-gray-200">
-                    {dataSource}
-                </span>
+            <div className="h-full w-full">
+                {chartType === 'bar' ? (
+                    <Bar data={data} options={options} />
+                ) : (
+                    <Line data={data} options={options} />
+                )}
             </div>
-
-            <div className={`h-40 rounded-lg ${chartColors[chartType] || chartColors.default} flex items-center justify-center`}>
-                <div className="text-center">
-                    <FiBarChart2 className="mx-auto text-4xl text-gray-400" />
-                    <p className="text-xs text-gray-500 mt-2">{chartType} visualization</p>
-                </div>
-            </div>
-
-            {/* <div className="mt-3 flex justify-between items-center text-xs text-gray-500">
-                <span>Updated just now</span>
-                <button className="text-blue-600 hover:text-blue-800">View details</button>
-            </div> */}
         </div>
     );
 };

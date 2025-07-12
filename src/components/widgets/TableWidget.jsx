@@ -45,9 +45,8 @@ const TableWidget = ({ columns = [], rows = [], onRemove }) => {
                     </table>
                 </div>
 
-                <div className="mt-3 flex justify-between items-center text-xs text-gray-500">
+                <div className="mt-3 flex justify-end items-center text-xs text-gray-500">
                     <span>{rows.length} records</span>
-                    <button className="text-blue-600 hover:text-blue-800">View all</button>
                 </div>
             </div>
         </div>

@@ -1,70 +1,3 @@
-// // context/WidgetContext.jsx
-// import React, { createContext, useState, useEffect, useRef } from 'react';
-// import { widgetConfig } from '../config';
-
-// export const WidgetContext = createContext();
-
-// export const WidgetProvider = ({ children }) => {
-//     const [widgets, setWidgets] = useState([]);
-//     const isFirstLoad = useRef(true); // <-- ADD THIS
-
-//     useEffect(() => {
-//         const saved = localStorage.getItem('widgets');
-//         setWidgets(saved ? JSON.parse(saved) : widgetConfig);
-//     }, []);
-
-
-//     useEffect(() => {
-//         if (isFirstLoad.current) {
-//             isFirstLoad.current = false; // Don't write to localStorage on first load
-//             return;
-//         }
-//         localStorage.setItem('widgets', JSON.stringify(widgets));
-//     }, [widgets]);
-
-//     const addWidget = (type) => {
-//         const newWidget = {
-//             id: `widget-${Date.now()}`,
-//             type,
-//             content: type === 'text' ? 'New Text Widget' : undefined,
-//             chartType: type === 'chart' ? 'line' : undefined,
-//             dataSource:
-//                 type === 'chart' || type === 'table' || type === 'metric'
-//                     ? 'demoData'
-//                     : undefined,
-//             metricLabel: type === 'metric' ? 'Active Users' : undefined,
-//             value: type === 'metric' ? '1,024' : undefined,
-//             columns: type === 'table' ? ['Name', 'Age'] : undefined,
-//             rows: type === 'table' ? [['Alice', 24], ['Bob', 27]] : undefined,
-//             position: { x: 0, y: 0 },
-//         };
-
-//         setWidgets((prev) => [...prev, newWidget]);
-//     };
-
-
-//     const removeWidget = (id) => {
-//         setWidgets((prev) => prev.filter((widget) => widget.id !== id));
-//     };
-
-//     const reorderWidgets = (fromIndex, toIndex) => {
-//         setWidgets((prev) => {
-//             const updated = [...prev];
-//             const [moved] = updated.splice(fromIndex, 1);
-//             updated.splice(toIndex, 0, moved);
-//             return updated;
-//         });
-//     };
-
-//     return (
-//         <WidgetContext.Provider value={{ widgets, addWidget, removeWidget, reorderWidgets }}>
-//             {children}
-//         </WidgetContext.Provider>
-//     );
-// };
-
-
-//Using useReducer for better state management
 import React, { createContext, useEffect, useReducer, useRef } from 'react';
 import { widgetConfig } from '../config';
 
@@ -110,13 +43,15 @@ export const WidgetProvider = ({ children }) => {
         const newWidget = {
             id: `widget-${Date.now()}`,
             type,
-            content: type === 'text' ? 'This month has shown exceptional growth across all key metrics. Our marketing campaigns have driven a 25% increase in user acquisition, while customer satisfaction scores have reached an all-time high of 4.8/5.' : undefined,
+            content: type === 'text' ? 'This month has shown exceptional growth across all key metrics. Our marketing campaigns have driven a 25% increase in user acquisition, while customer satisfaction scores have reached an all-time high of 4.8/5. This marks the highest growth rate in our company history.' : undefined,
             chartType: type === 'chart' ? 'line' : undefined,
             dataSource: ['chart', 'table', 'metric'].includes(type) ? 'demoData' : undefined,
             metricLabel: type === 'metric' ? 'Users' : undefined,
             value: type === 'metric' ? '1,200' : undefined,
-            columns: type === 'table' ? ['Name', 'Age'] : undefined,
-            rows: type === 'table' ? [['Alice', 22], ['Bob', 24]] : undefined,
+            columns: type === 'table' ? ['Name', 'Score', 'Age'] : undefined,
+            rows: type === 'table' ? [['Alice', 22, 35], ['Bob', 24, 35], ['Sita', 35, 22]] : undefined,
+            status: type === 'text' ? 'Important' : undefined,
+            department: type === 'text' ? 'Sales' : undefined,
             position: { x: 0, y: 0 },
         };
         dispatch({ type: 'ADD', payload: newWidget });
