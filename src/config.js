@@ -4,7 +4,7 @@ export const widgetConfig = [
     title: "Welcome",
     type: "text",
     content:
-      "Welcome to widget dashboard! You can find various widgets here to visualize your data effectively. Use the buttons to add, hover individual to remove, or rearrange widgets by simply grabbing them and placing as needed. Enjoy customizing your dashboard!",
+      "Welcome! Use the buttons to add, hover individual to remove, or rearrange widgets by simply grabbing them and placing as needed. Enjoy customizing your dashboard!",
     position: { x: 0, y: 0 },
     status: "Information",
     department: "General",
