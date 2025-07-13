@@ -120,3 +120,7 @@ Configurable rendering (config.js)
 Lazy-loaded widgets
 
 Context-driven global state
+
+---
+
+# Refer to the notes for more details on implementation, performance considerations, extensibility, and potential trade-offs.
