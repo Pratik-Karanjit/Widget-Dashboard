@@ -43,7 +43,7 @@ export const WidgetProvider = ({ children }) => {
         const newWidget = {
             id: `widget-${Date.now()}`,
             type,
-            content: type === 'text' ? 'This month has shown exceptional growth across all key metrics. Our marketing campaigns have driven a 25% increase in user acquisition, while customer satisfaction scores have reached an all-time high of 4.8/5.' : undefined,
+            content: type === 'text' ? 'This month has shown exceptional growth across all key metrics. Our service has improved the performance of multiple companies.' : undefined,
             chartType: type === 'chart' ? 'line' : undefined,
             dataSource: ['chart', 'table', 'metric'].includes(type) ? 'demoData' : undefined,
             metricLabel: type === 'metric' ? 'Users' : undefined,
