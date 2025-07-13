@@ -123,4 +123,4 @@ Context-driven global state
 
 ---
 
-# Refer to the notes for more details on implementation, performance considerations, extensibility, and potential trade-offs.
+# Refer to the /architecture and solutions folder provided in the root for more details on implementation, performance considerations, extensibility, and potential trade-offs.
